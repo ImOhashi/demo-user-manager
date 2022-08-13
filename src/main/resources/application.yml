@@ -1,0 +1,30 @@
+### CONFIGURATION SERVER ###
+server:
+  port: 7000
+
+### CONFIGURATION DATABASE ###
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  data:
+    mongodb:
+      uri: mongodb://root:toor@localhost:27017/admin
+      auto-index-creation: true
+
+### CONFIGURATION LOG ###
+logging:
+  level:
+    root: INFO
+    com:
+      example: TRACE
+
+### CONFIGURATION ACTUATOR ###
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
