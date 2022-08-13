@@ -1,6 +1,6 @@
 ### CONFIGURATION SERVER ###
 server:
-  port: 7000
+  port: 8080
 
 ### CONFIGURATION DATABASE ###
 spring:
