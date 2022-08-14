@@ -8,8 +8,6 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
-
 @Data
 @Document("user")
 @NoArgsConstructor
@@ -17,7 +15,7 @@ import java.util.UUID;
 public class User {
 
     public User(UserRequest newUser) {
-        this._id = UUID.randomUUID();
+        this._id = new ObjectId();
         this.name = newUser.getName();
         this.nickname = newUser.getNickname();
         this.password = newUser.getPassword();
@@ -25,7 +23,7 @@ public class User {
     }
 
     @Id
-    private UUID _id;
+    private ObjectId _id;
 
     private String name;
 

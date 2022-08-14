@@ -5,6 +5,7 @@ import com.ohashi.demousermanager.application.web.payload.UserResponse;
 import com.ohashi.demousermanager.domain.entity.User;
 import com.ohashi.demousermanager.domain.repository.UserRepository;
 import com.ohashi.demousermanager.domain.service.UserService;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,12 @@ public class UserServiceImpl implements UserService {
     public UserResponse createUser(UserRequest newUser) throws Exception {
         try {
             var existsUser = repository.getByNickname(newUser.getNickname());
+
+            if (existsUser != null) {
+                throw new Exception("User already exists in database!");
+            }
+
+            existsUser = repository.getByEmail(newUser.getEmail());
 
             if (existsUser != null) {
                 throw new Exception("User already exists in database!");
