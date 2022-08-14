@@ -1,36 +1,37 @@
 package com.ohashi.demousermanager.domain.entity;
 
+import com.ohashi.demousermanager.application.web.payload.UserRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.validation.annotation.Validated;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Data
-@Validated
+@Document("user")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
-    @NotNull
-    @NotEmpty
+    public User(UserRequest newUser) {
+        this._id = UUID.randomUUID();
+        this.name = newUser.getName();
+        this.nickname = newUser.getNickname();
+        this.password = newUser.getPassword();
+        this.email = newUser.getEmail();
+    }
+
+    @Id
+    private UUID _id;
+
     private String name;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
     private String nickname;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
     private String password;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
     private String email;
 }
